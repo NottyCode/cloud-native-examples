@@ -23,9 +23,9 @@
     
     <httpEndpoint httpPort="9081" httpsPort="9444" id="defaultHttpEndpoint" />
     
-    <keyStore password="SOME_PASSWORD"/>
+    <keyStore password="KeyStorePassword"/>
     
-    <quickStartSecurity userName="AName" userPassword="ANamePwd" />
+    <quickStartSecurity userName="Admin" userPassword="Admin" />
 
     <webApplication id="serviceC" location="serviceC.war" name="serviceC"/>
 </server>
