@@ -1,2 +1,4 @@
 target/
 .vscode
+.classpath
+.DS_Store
