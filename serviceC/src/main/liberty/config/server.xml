@@ -17,9 +17,16 @@
     <featureManager>
         <feature>jaxrs-2.0</feature>
         <feature>cdi-1.2</feature>
+        <feature>mpMetrics-1.0</feature>
+        <feature>mpHealth-1.0</feature>
     </featureManager>
     
-    <httpEndpoint httpPort="9081" httpsPort="9444" id="defaultHttpEndpoint" />
+    <httpEndpoint httpPort="9081" httpsPort="9444" id="defaultHttpEndpoint" host="*" />
     
+    <keyStore password="KeyStorePassword"/>
+    
+    <quickStartSecurity userName="Admin" userPassword="Admin" />
+
     <webApplication id="serviceC" location="serviceC.war" name="serviceC"/>
 </server>
+
