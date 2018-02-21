@@ -39,11 +39,7 @@ public class ServiceAHealth implements HealthCheck {
 
   @Override
   public HealthCheckResponse call() {
-    if (!isHealthy()) {
-      return HealthCheckResponse.named(ServiceA.class.getSimpleName())
-                                .down().build();
-    }
-    return HealthCheckResponse.named(ServiceA.class.getSimpleName())
-                              .up().build();
+    boolean up = isHealthy();
+    return HealthCheckResponse.named("ServiceC").state(up).build();
   }
 }

@@ -9,6 +9,7 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.faulttolerance.Fallback;
 import org.eclipse.microprofile.faulttolerance.Retry;
 import org.eclipse.microprofile.faulttolerance.Timeout;
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import java.io.IOException;
 
@@ -16,22 +17,18 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 @ApplicationScoped
-public class ServiceCProxy {
+public class ServiceCHelper {
 
     @Inject
     @ConfigProperty(name="serviceC.url")
     private String serviceCURL;
 
-    public String getProperty(String name, String mode) throws IOException {
-        Client c = ClientBuilder.newClient();
-        WebTarget t = c.target(serviceCURL + "/" + name + "?mode=" + mode);
-        Response r = t.request().get();
+    @Inject
+    @RestClient
+    private ServiceC client;
 
-        if (r.getStatus() == 200) {
-            return r.readEntity(Prop.class).getValue();
-        } else {
-            throw new IOException(t.getUri() + " returns " + r.getStatus());
-        }
+    public String getProperty(String name, String mode) throws IOException {
+        return client.getProp(mode, name).getValue();
     }
 
     public Prop getPropertyEasy(String name) throws IOException {

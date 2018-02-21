@@ -14,9 +14,9 @@ import java.io.IOException;
 
 @Path("props")
 @RequestScoped
-public class ServiceA {
+public class ServiceARest {
     @Inject
-    private ServiceCProxy serviceC;
+    private ServiceCHelper serviceC;
 
     @Produces(MediaType.APPLICATION_JSON)
     @GET

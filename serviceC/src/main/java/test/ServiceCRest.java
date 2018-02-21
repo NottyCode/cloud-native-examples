@@ -17,7 +17,7 @@ import org.eclipse.microprofile.metrics.annotation.Timed;
 
 @Path("props")
 @ApplicationScoped
-public class ServiceC {
+public class ServiceCRest {
     @Inject
     private MyBean bean;
 

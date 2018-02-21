@@ -81,6 +81,9 @@
                     <serverName>${project.artifactId}Server</serverName>
                     <configFile>src/main/liberty/config/server.xml</configFile>
                     <include>${packaging.type}</include>
+                    <bootstrapProperties>
+                      <service.name>serviceC</service.name>
+                    </bootstrapProperties>
                 </configuration>
             </plugin>
             <plugin>
