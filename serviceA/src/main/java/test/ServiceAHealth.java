@@ -23,16 +23,19 @@ public class ServiceAHealth implements HealthCheck {
 
   public boolean isHealthy() {
 
-    System.out.println(serviceCURL);
+    try {
+      Client c = ClientBuilder.newClient();
+      WebTarget t = c.target(serviceCURL + "/" + "test");
+      Response r = t.request().get();
 
-    Client c = ClientBuilder.newClient();
-    WebTarget t = c.target(serviceCURL + "/" + "test");
-    Response r = t.request().get();
-
-    if (r.getStatus() != 200) {
+      if (r.getStatus() != 200) {
+        return false;
+      }
+      return true;
+    } catch (Exception e) {
       return false;
     }
-    return true;
+
   }
 
   @Override
