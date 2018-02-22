@@ -10,6 +10,10 @@ import java.io.IOException;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Response;
 
 @ApplicationScoped
 public class ServiceCHelper {
@@ -22,25 +26,25 @@ public class ServiceCHelper {
     @RestClient
     private ServiceC client;
 
-    public String getProperty(String name, String mode) throws IOException {
+    public String getProperty(String name, String mode) {
         return client.getProp(mode, name).getValue();
-    }
+     }
 
-    public Prop getPropertyEasy(String name) throws IOException {
+    public Prop getPropertyEasy(String name) {
         return new Prop(name, getProperty(name, "none"));
     }
 
-    public Prop getPropertyNoRetry(String name) throws IOException {
+    public Prop getPropertyNoRetry(String name) {
         return new Prop(name, getProperty(name, "sometimes"));
     }
 
-    @Retry(retryOn=IOException.class, maxRetries=5)
-    public Prop getPropertyWithRetry(String name) throws IOException {
+    @Retry()
+    public Prop getPropertyWithRetry(String name)  {
         return new Prop(name, getProperty(name, "sometimes"));
     }
 
     @Timeout(500)
-    public Prop getPropertyWithTimeout(String name) throws IOException {
+    public Prop getPropertyWithTimeout(String name)  {
         return new Prop(name, getProperty(name, "slow"));
     }
 
