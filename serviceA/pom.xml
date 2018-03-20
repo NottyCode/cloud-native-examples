@@ -73,17 +73,16 @@
                 <artifactId>liberty-maven-plugin</artifactId>
                 <version>2.0</version>
                 <configuration>
-                    <install>
+<!--                    <install>
                       <version>2018.2.0_0</version>
                     </install>
-<!--
+-->
                     <assemblyArtifact>
                         <groupId>io.openliberty</groupId>
                         <artifactId>openliberty-runtime</artifactId>
-                        <version>17.0.0.4</version>
+                        <version>18.0.0.1</version>
                         <type>zip</type>
                     </assemblyArtifact>
--->
                     <serverName>${project.artifactId}Server</serverName>
                     <configFile>src/main/liberty/config/server.xml</configFile>
                     <jvmOptionsFile>src/main/liberty/config/jvm.options</jvmOptionsFile>
