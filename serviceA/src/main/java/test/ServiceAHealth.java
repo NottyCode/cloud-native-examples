@@ -18,21 +18,25 @@ import org.eclipse.microprofile.health.HealthCheckResponse;
 public class ServiceAHealth implements HealthCheck {
 
   @Inject
-  @ConfigProperty(name="serviceC.url")
+  @ConfigProperty(name="test.ServiceC/mp-rest/url")
   private String serviceCURL;
 
   public boolean isHealthy() {
 
     try {
       Client c = ClientBuilder.newClient();
-      WebTarget t = c.target(serviceCURL + "/" + "test");
+      WebTarget t = c.target(serviceCURL + "/props/os.name");
       Response r = t.request().get();
 
-      if (r.getStatus() != 200) {
+      int status = r.getStatus();
+      if (status != 200) {
         return false;
+      } else {
+        System.err.println(status);
       }
       return true;
     } catch (Exception e) {
+      e.printStackTrace();
       return false;
     }
 

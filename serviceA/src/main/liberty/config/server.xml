@@ -15,11 +15,28 @@
 -->
 <server description="Sample Servlet server">
     <featureManager>
-        <feature>microProfile-1.2</feature>
+        <feature>mpFaultTolerance-1.0</feature>
+        <feature>mpHealth-1.0</feature>
+        <feature>jsonp-1.0</feature>
+        <feature>jaxrs-2.0</feature>
+        <feature>mpConfig-1.2</feature>
         <feature>mpRestClient-1.0</feature>
+        <feature>mpMetrics-1.1</feature>
+        <feature>mpOpenAPI-1.0</feature> 
+        <feature>cdi-1.2</feature>
     </featureManager>
     
-    <httpEndpoint httpPort="9080" httpsPort="9443" id="defaultHttpEndpoint" />
+    <keyStore id="defaultKeyStore" password="yourpassword" />
+
+    <basicRegistry realm="test">
+      <user name="admin" password="admin" />
+    </basicRegistry>
+
+    <administrator-role>
+      <user>admin</user>
+    </administrator-role>
+
+    <httpEndpoint httpPort="9080" httpsPort="9443" host="*" id="defaultHttpEndpoint" />
     
     <webApplication id="serviceA" location="serviceA.war" name="serviceA"/>
 </server>
